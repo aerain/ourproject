@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Animation.cs" />
+     <Compile Include="Assets\MouseTracking.cs" />
      <Compile Include="Assets\OldRadio\CamRotat.cs" />
      <Compile Include="Assets\TestLevel\scripts\ImpactAudio.cs" />
      <Compile Include="Assets\TestLevel\scripts\Lightflicker.cs" />
