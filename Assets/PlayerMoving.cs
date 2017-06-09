@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class PlayerMoving : MonoBehaviour {
     
-    private Rigidbody rb;
+    public float moveSpeed = 10;
 	// Use this for initialization
 	void Start () {
-        rb = GetComponent<Rigidbody>();
+        
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal,0.0f, moveVertical);
-        rb.AddForce(movement * 110);
-	}
+        transform.Translate(new Vector3(moveHorizontal, 0, moveVertical) * moveSpeed * Time.fixedDeltaTime);
+
+        
+        transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0));
+       
+
+
+    }
 }
