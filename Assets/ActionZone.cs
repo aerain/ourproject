@@ -9,5 +9,8 @@ public class ActionZone : MonoBehaviour {
     public void Run()
     {
         Target.SendMessage("Play");
+        Vector3 rot = transform.eulerAngles;
+        rot.y += 1f;
+        transform.eulerAngles = rot;
     }
 }
