@@ -9,13 +9,15 @@ public class Anim
 }
 public class PlayerMoving : MonoBehaviour {
     
-    public float moveSpeed = 10;
-    public Anim anim;
-    public Animation _animation;
+    public float moveSpeed = 2;
+    public Anim anims;
+    public Animation anim;
+    
 	// Use this for initialization
 	void Start () {
-        _animation = GetComponentInChildren<Animation>();
-        // _animation.clip = anim.standing;
+        
+        
+       
 	}
 
     // Update is called once per frame
@@ -28,28 +30,9 @@ public class PlayerMoving : MonoBehaviour {
 
         transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0));
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (az) az.Run();
-        }
-    }
-   public ActionZone az;
+        
+    }  
+    
 
-   void OnTriggerEnter(Collider _col)
-   {
-         if(_col.gameObject.tag == "ActionZone")
-        {
-            az = _col.gameObject.GetComponent<ActionZone>();
-            
-        }
-   }
-
-   void OnTriggerExit(Collider _col)
-    {
-        if(_col.gameObject.tag == "Actionzone")
-        {
-            az = null;
-        }
-    }
 }
 

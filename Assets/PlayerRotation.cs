@@ -18,7 +18,7 @@ public class PlayerRotation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Player = GameObject.FindGameObjectWithTag("Player");
-        MainCamera = GameObject.FindGameObjectWithTag("Camera");
+        MainCamera = GameObject.FindGameObjectWithTag("Player.Camera");
 
         dist = Mathf.Sqrt(width * width + height * height);
 
@@ -33,9 +33,9 @@ public class PlayerRotation : MonoBehaviour {
        //  transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * Time.deltaTime * rot_speed, Space.World);
         transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y"), Space.Self);
 
-        transform.position = Player.transform.position;
+        // transform.position = Player.transform.position;
 
-        Vector3 ray_target = transform.up * height + transform.forward * width;
+        /* Vector3 ray_target = transform.up * height + transform.forward * width;
         Debug.Log("ray_target : " + ray_target);
 
         RaycastHit hitinfo;
@@ -52,7 +52,7 @@ public class PlayerRotation : MonoBehaviour {
             MainCamera.transform.Translate(dir * dist);
 
             MainCamera.transform.Translate(dir * -1 * camera_fix);
-        }
+        } */
 
 
     }
