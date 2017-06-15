@@ -3,24 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChestCol : MonoBehaviour {
+public class FirstBed : MonoBehaviour {
+    Inventory inv;
     public Text HUD;
     // Use this for initialization
-	void Start () {
+    void Start()
+    {
+        inv = GameObject.Find("Player").GetComponent<Inventory>();
         HUD = GameObject.Find("HUDCanvas").transform.FindChild("TextHUD").GetComponent<Text>();
-       
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
     void OnTriggerEnter(Collider other)
     {
-       if(other.tag == "Player")
+        if (other.tag == "Player")
         {
-            Debug.Log("서랍장 충돌");
+            Debug.Log("침대 충돌");
         }
     }
     void OnTriggerStay(Collider other)
@@ -29,14 +33,12 @@ public class ChestCol : MonoBehaviour {
         {
             if (other.tag == "Player")
             {
-
-                HUD.text = "서랍장에는 별 것이 없어 보인다..";
-
                 
-               
-            }            
+                HUD.text = "침대 밑에서 어딘가의 열쇠를 주웠다!";
+                inv.firstbedkey = true;
+            }
         }
-        
+
     }
     private void OnTriggerExit(Collider other)
     {
