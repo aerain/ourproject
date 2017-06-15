@@ -7,7 +7,7 @@ public class button : MonoBehaviour {
 
 	// Use this for initialization
 	public void GameStartActive(){
-		SceneManager.LoadScene ("room.unity");	
+		SceneManager.LoadScene (1);	
 	}
 	public void ExitActive()
 	{

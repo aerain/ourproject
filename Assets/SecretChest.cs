@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class ToiletDoor : MonoBehaviour {
-
-   public Text HUD;
+public class SecretChest : MonoBehaviour {
+    public Text HUD;
     Animator anim;
+    Inventory inv;
     // Use this for initialization
     void Start()
     {
-        
+
         HUD = GameObject.Find("HUDCanvas").transform.FindChild("TextHUD").GetComponent<Text>();
         anim = transform.parent.GetComponent<Animator>();
-
+        inv = GameObject.Find("Player").GetComponent<Inventory>();
 
     }
 
@@ -25,9 +26,10 @@ public class ToiletDoor : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        
         if (other.tag == "Player")
         {
-            Debug.Log("Toilet Door 충돌");
+            Debug.Log("Marshall 충돌");
         }
     }
     void OnTriggerStay(Collider other)
@@ -36,20 +38,17 @@ public class ToiletDoor : MonoBehaviour {
         {
             if (other.tag == "Player")
             {
-                
-                    HUD.text = "문이 열렸다!";
-                    anim.SetBool("open", true);
-                   
-                
-               
+                SceneManager.LoadScene(2, LoadSceneMode.Additive);
             }
         }
 
+        if (inv.secretchest)
+        {
+            HUD.text = "체스터에서 뭔가를 발견했다! 사다리 부품인것 같다.";            
+        }
     }
     private void OnTriggerExit(Collider other)
     {
         HUD.text = "";
     }
-
-
 }

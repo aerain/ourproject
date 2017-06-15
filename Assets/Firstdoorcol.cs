@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ToiletDoor : MonoBehaviour {
-
-   public Text HUD;
+public class Firstdoorcol : MonoBehaviour {
+    Inventory inv;
+    public Text HUD;
     Animator anim;
     // Use this for initialization
     void Start()
     {
-        
+        inv = GameObject.Find("Player").GetComponent<Inventory>();
         HUD = GameObject.Find("HUDCanvas").transform.FindChild("TextHUD").GetComponent<Text>();
         anim = transform.parent.GetComponent<Animator>();
 
@@ -18,16 +18,15 @@ public class ToiletDoor : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
+    void Update () {
+		
+	}
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Toilet Door 충돌");
+            Debug.Log("First Door 충돌");
         }
     }
     void OnTriggerStay(Collider other)
@@ -36,12 +35,16 @@ public class ToiletDoor : MonoBehaviour {
         {
             if (other.tag == "Player")
             {
-                
-                    HUD.text = "문이 열렸다!";
+                if (inv.firstkey)
+                {
+                    HUD.text = "문이 열린다!";
                     anim.SetBool("open", true);
-                   
-                
-               
+                    inv.firstdoor = true;
+                }
+                else
+                {
+                    HUD.text = "단단히 잠겨있다..";
+                }
             }
         }
 
@@ -50,6 +53,4 @@ public class ToiletDoor : MonoBehaviour {
     {
         HUD.text = "";
     }
-
-
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ToiletDoor : MonoBehaviour {
-
-   public Text HUD;
+public class Marshall : MonoBehaviour {
+    
+    public Text HUD;
     Animator anim;
     // Use this for initialization
     void Start()
@@ -27,7 +27,7 @@ public class ToiletDoor : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Toilet Door 충돌");
+            Debug.Log("Marshall 충돌");
         }
     }
     void OnTriggerStay(Collider other)
@@ -35,21 +35,14 @@ public class ToiletDoor : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (other.tag == "Player")
-            {
-                
-                    HUD.text = "문이 열렸다!";
-                    anim.SetBool("open", true);
-                   
-                
-               
+            {               
+                    HUD.text = "앰프를 밀었다!";
+                    anim.SetBool("marshall", true);              
             }
         }
-
     }
     private void OnTriggerExit(Collider other)
     {
         HUD.text = "";
     }
-
-
 }
