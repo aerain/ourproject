@@ -8,7 +8,7 @@ public class ChestCol : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         HUD = gameObject.transform.Find("TextHUD").gameObject;
-        hudtext = HUD.transform.FindChild("Text").GetComponent<>();
+        
 	}
 	
 	// Update is called once per frame
@@ -29,7 +29,6 @@ public class ChestCol : MonoBehaviour {
             if (other.tag == "Player")
             {
                 HUD.SetActive(true);
-                hudtext  
             }            
         }
         
