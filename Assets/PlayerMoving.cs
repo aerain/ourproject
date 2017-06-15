@@ -9,7 +9,7 @@ public class Anim
 }
 public class PlayerMoving : MonoBehaviour {
     
-    public float moveSpeed = 2;
+    public float moveSpeed = 4;
     public Anim anims;
     public Animation anim;
     

@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorCollide : MonoBehaviour {
-    GameObject par;
+    
     Animator anim;
     
 
 	// Use this for initialization
-	public string Start () {
-        par = transform.parent.gameObject;
-        anim = par.GetComponent<Animator>();
-        string parn = par.name;
-
-        return parn;
+	void Start () {
+        
+        
+       
 
 	}
 	
@@ -24,18 +22,33 @@ public class DoorCollide : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        
-        if (other.tag == "Player")
+        anim = other.transform.parent.GetComponent<Animator>();
+
+        if (other.tag == "ActionZone")
         {
 
-            anim.SetBool("door", false);
-            Debug.Log(Start() + " Collide");
+            
+            Debug.Log(other.transform.parent.name + " Collide");
+        }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (other.tag == "ActionZone")
+            {
+                Debug.Log(anim.transform.name + "와 " + anim.transform.name + "확인");
+
+                anim.SetBool("open", true);
+                Debug.Log(transform.name + "열림");
+            }
+
         }
     }
     void OnTriggerExit(Collider other)
     {
-        anim.SetBool("door", true);
-        Debug.Log(Start() + " Exit");
+        Debug.Log(other.transform.parent.name + " Exit");
     }
 
 }
