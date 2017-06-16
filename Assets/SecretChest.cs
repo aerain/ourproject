@@ -8,6 +8,7 @@ public class SecretChest : MonoBehaviour {
     public Text HUD;
     Animator anim;
     Inventory inv;
+    public GameObject Door;
     // Use this for initialization
     void Start()
     {
@@ -15,7 +16,7 @@ public class SecretChest : MonoBehaviour {
         HUD = GameObject.Find("HUDCanvas").transform.FindChild("TextHUD").GetComponent<Text>();
         anim = transform.parent.GetComponent<Animator>();
         inv = GameObject.Find("Player").GetComponent<Inventory>();
-
+        Door = GameObject.Find("HUDCanvas").transform.FindChild("DoorLock").gameObject;
     }
 
     // Update is called once per frame
@@ -29,23 +30,30 @@ public class SecretChest : MonoBehaviour {
         
         if (other.tag == "Player")
         {
-            Debug.Log("Marshall 충돌");
+            Debug.Log("비밀 체스터 충돌");
         }
     }
     void OnTriggerStay(Collider other)
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (other.tag == "Player")
+            if (!inv.secretchest)
             {
-                SceneManager.LoadScene(2, LoadSceneMode.Additive);
+                if (other.tag == "Player")
+                {
+                    PlayerPrefs.SetInt("save", 1);
+                    PlayerPrefs.Save();
+                    SceneManager.LoadScene(2, LoadSceneMode.Additive);
+                                      
+                }
+            } else
+            {
+                HUD.text = "체스터에서 뭔가를 발견했다! 사다리 부품인것 같다.";
+                
             }
         }
 
-        if (inv.secretchest)
-        {
-            HUD.text = "체스터에서 뭔가를 발견했다! 사다리 부품인것 같다.";            
-        }
+       
     }
     private void OnTriggerExit(Collider other)
     {

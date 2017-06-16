@@ -22,7 +22,7 @@ public class wartercooler : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            Debug.Log("체스트 충돌");
+            Debug.Log("정수기 충돌");
         }
     }
     void OnTriggerStay(Collider other)
@@ -31,7 +31,7 @@ public class wartercooler : MonoBehaviour {
         {
             if (other.tag == "Player")
             {
-                HUD.text = "맞은편 작업실의 키인것 같다!";
+                HUD.text = "자그마한 키를 주웠다. 맞은편 방의 키인것 같다.";
                 inv.kitchenwaterkey = true;
             }
 

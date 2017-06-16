@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class DoorLock : MonoBehaviour {
@@ -13,10 +14,14 @@ public class DoorLock : MonoBehaviour {
 	public GUIText guicolor;
     public string answer;
     public string label2;
+    public Text HUD;
+    public GameObject Door;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        HUD = GameObject.Find("HUDCanvas").transform.FindChild("TextHUD").GetComponent<Text>();
+        Door = GameObject.Find("HUDCanvas").transform.FindChild("DoorLock").gameObject;
         inven = GameObject.Find("Player").GetComponent<Inventory>();
 		this.answer = "<color=#ffffffff>" + inven.kitchentabledoorlock + "</color>";
         this.label = "";
@@ -35,9 +40,11 @@ public class DoorLock : MonoBehaviour {
                 label2 = "<color=#ffffffff>" + "Correct!" + "</color>";
                 
                 inven.secretchest = true;
-                
-                SceneManager.LoadScene(1, LoadSceneMode.Single);
-                
+
+                SceneManager.UnloadSceneAsync(2);
+                HUD.text = "체스터에서 뭔가를 발견했다! 사다리 부품인것 같다.";
+                Door.SetActive(false);
+
             } else
             {
                 label2 = "<color=#ffffffff>" + "Wrong!" + "</color>";

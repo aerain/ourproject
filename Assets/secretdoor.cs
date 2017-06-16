@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ToiletDoor : MonoBehaviour {
+public class secretdoor : MonoBehaviour {
 
     public Text HUD;
     Animator anim;
     // Use this for initialization
     void Start()
     {
-        
+
         HUD = GameObject.Find("HUDCanvas").transform.FindChild("TextHUD").GetComponent<Text>();
         anim = transform.parent.GetComponent<Animator>();
 
@@ -27,7 +27,7 @@ public class ToiletDoor : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Toilet Door 충돌");
+            Debug.Log("secret Door 충돌");
         }
     }
     void OnTriggerStay(Collider other)
@@ -36,12 +36,8 @@ public class ToiletDoor : MonoBehaviour {
         {
             if (other.tag == "Player")
             {
-                
-                    HUD.text = "문이 열렸다!";
-                    anim.SetBool("open", true);
-                   
-                
-               
+                HUD.text = "문이 열렸다!";
+                anim.SetBool("open", true);
             }
         }
 
@@ -50,6 +46,4 @@ public class ToiletDoor : MonoBehaviour {
     {
         HUD.text = "";
     }
-
-
 }
